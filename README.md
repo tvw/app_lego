@@ -18,7 +18,7 @@ The options and modules can be passed in through the `LEGOS` environment variabl
 
 Listing all the available options and modules:
 
-    $ LEGOS="braid,basic,rspec,haml,jquery,auth,couchdb,locale,misc" rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
+    $ LEGOS="braid,basic,rspec,machinist,cucumber,haml,jquery,auth,couchdb,locale,misc" rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
 
 # Options
 
@@ -31,6 +31,12 @@ App LEGO can use [Braid](http://github.com/evilchelu/braid/wikis) to manage vend
 The **basic** module initializes the Rails application in a git repository, removes unnecessary files and directories, sets up `.gitignore` files and freezes Edge Rails.
 
 The **RSpec** module remove the `test` directory and installs the plugins necessary for RSpec. It also runs the rspec generator.
+
+The **Cucumber** module install the Webrat and Cucumber gems and run the 'cucumber' generator.
+
+The **Machinist** module install the Machinist plugin, delete the fixtures folder, creates a spec/blueprints folder and generates basics blueprints_helper.rb and spec_helper.rb
+
+The **Haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
 
 The **Haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
 
