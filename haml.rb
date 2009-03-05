@@ -1,4 +1,4 @@
-gem 'haml', :version => '>= 2.1'
+gem 'haml', :version => '>= 2.0'
 gem 'chriseppstein-compass', :lib => 'compass', :version => '>= 0.3.4'
 
 rake "gems:install"
