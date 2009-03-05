@@ -2,6 +2,8 @@
 
 gem 'authlogic'
 
+rake "gems:install"
+
 generate 'session', 'user_session'
 
 user_model = ENV['USER_MODEL'] || ask("What should be the name of the user model? (leave it empty to skip)")
