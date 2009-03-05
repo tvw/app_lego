@@ -24,8 +24,6 @@ class #{user_model.classify} < ActiveRecord::Base
   acts_as_authentic # for options see documentation: Authlogic::ORMAdapters::ActiveRecordAdapter::ActsAsAuthentic::Config
 end
   RB
-
-  log "NOTE", "Don't forget to run 'rake db:migrate'."
 end
 
 git :add => "."

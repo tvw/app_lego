@@ -61,4 +61,5 @@ if @lego_options or yes?("Do you want to play LEGO?")
     end
   end
   rake "gems:install"
+  rake "db:migrate"
 end
