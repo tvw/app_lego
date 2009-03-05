@@ -34,6 +34,8 @@ end
 modules = [
   ["basic",   "Do basic setup? (only exclude this if you already have a Rails app skeleton with Rails 2.3+ frozen, or as a gem)"],
   ["rspec",   "Use RSpec instead of test/unit?"],
+  ["machinist", "Fixtures aren't fun. machinist is."],
+  ["cucumber", "Use Cucumber for features."],
   ["haml",    "Use haml for views and sass for css?"],
   ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
   ["auth",    "Add authentication module?"],
