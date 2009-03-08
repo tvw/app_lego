@@ -1,7 +1,8 @@
-plugin 'rspec',
-  :git => 'git://github.com/dchelimsky/rspec.git'
-plugin 'rspec-rails',
-  :git => 'git://github.com/dchelimsky/rspec-rails.git'
+gem 'rspec', :env => 'test'
+gem 'rspec-rails', :env => 'test'
+gem 'quietbacktrace', :env => %w[development test]
+
+rake 'gems:install', :sudo=>true, :env => "test"
 
 generate "rspec"
 

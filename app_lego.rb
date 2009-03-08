@@ -14,6 +14,8 @@ end
 
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
+  run "sudo gem install braid" unless run("gem list -i braid", :show_response=>true)
+  
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
   end
@@ -37,7 +39,6 @@ modules = [
   ["haml",    "Use haml for views and sass for css?"],
   ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
   ["auth",    "Add authentication module?"],
-  ["couchdb", "Use CouchDB?"],
   ["locale",  "Add specific localizations?"],
   ["misc",    "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
 ]

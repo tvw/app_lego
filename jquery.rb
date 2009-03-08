@@ -1,15 +1,32 @@
 git :rm => "public/javascripts/*"
 
 file 'public/javascripts/jquery.js', 
-  open('http://ajax.googleapis.com/ajax/libs/jquery/1.2/jquery.min.js').read
-file 'public/javascripts/jquery.full.js', 
-  open('http://ajax.googleapis.com/ajax/libs/jquery/1.2/jquery.js').read
-file 'public/javascripts/jquery-ui.js', 
-  open('http://ajax.googleapis.com/ajax/libs/jqueryui/1.5/jquery-ui.min.js').read
-file 'public/javascripts/jquery-ui.full.js', 
-  open('http://ajax.googleapis.com/ajax/libs/jqueryui/1.5/jquery-ui.js').read
-file 'public/javascripts/jquery.form.js', 
-  open('http://jqueryjs.googlecode.com/svn/trunk/plugins/form/jquery.form.js').read
+  open('http://code.jquery.com/jquery-latest.js').read
+file 'public/javascripts/jquery.min.js', 
+  open('http://code.jquery.com/jquery-latest.min.js').read
+
+require 'rubygems'
+require 'zip/zip'
+
+log "downloading", "jQuery UI 1.7" #http://code.google.com/p/jquery-ui/downloads/list
+file('temp.zip', open('http://jquery-ui.googlecode.com/files/jquery-ui-1.7.zip').read)
+
+#http://www.markhneedham.com/blog/2008/10/02/ruby-unzipping-a-file-using-rubyzip/
+Zip::ZipFile.open('temp.zip') { |zip_file|
+ zip_file.each { |f|
+   f_path=File.join('public/javascripts', f.name)
+   FileUtils.mkdir_p(File.dirname(f_path))
+   zip_file.extract(f, f_path) unless File.exist?(f_path)
+ }
+}
+
+run "rm temp.zip"
+
+inside('public/javascripts/jquery-ui-1.7') do
+  run "cp ui themes .. -r"
+end
+
+run "rm public/javascripts/jquery-ui-1.7 -r"
 
 file "public/javascripts/application.js", <<-JS
 $(function() {
@@ -18,4 +35,4 @@ $(function() {
 JS
 
 git :add => "."
-git :commit => "-a -m 'Added jQuery with UI and form plugin'"
+git :commit => "-a -m 'Added jQuery 1.3.2 with UI 1.7'"

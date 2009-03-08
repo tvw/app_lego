@@ -2,6 +2,8 @@
 
 gem 'authlogic'
 
+rake "gems:install", :sudo=>true
+
 generate 'session', 'user_session'
 
 user_model = ENV['USER_MODEL'] || ask("What should be the name of the user model? (leave it empty to skip)")
@@ -23,7 +25,7 @@ class #{user_model.classify} < ActiveRecord::Base
 end
   RB
 
-  log "NOTE", "Don't forget to run 'rake db:migrate'."
+  rake "db:migrate"
 end
 
 git :add => "."

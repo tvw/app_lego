@@ -22,7 +22,7 @@ file 'app/helpers/application_helper.rb',
   end
 
   def body_class
-    "#{controller.controller_name} #{controller.controller_name}-#{controller.action_name}"
+    "#{controller.controller_name} #{controller.controller_name}_#{controller.action_name}"
   end
 end
 }
@@ -35,7 +35,6 @@ Dir['config/locales/*.*'].map {|f| File.basename(f).split(".").first}.uniq.each 
   YAML
 end
 
-git :rm => 'config/locales/en.yml'
 
 if File.exists?('vendor/plugins/haml')
 
@@ -43,24 +42,24 @@ if File.exists?('vendor/plugins/haml')
 #flash
   - flash.each do |key, value|
     %div{:id => "flash_\#{key}"}= value
-  HAML
+HAML
 
-  file 'app/views/layouts/application.html.haml', <<-HAML
-!!! XML
-!!! Strict
-%html{'xmlns' => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', 'lang' => 'en'}
+  file 'app/views/layouts/applictaion.html.haml', <<-HAML
+!!!
+%html{html_attrs}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %title= "\#{page_title + ' - ' unless page_title.blank?}\#{t(:app_name)}"
     = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
   %body{:class => body_class}
-    = render :partial => 'layouts/flashes'
-    = yield
-  HAML
-
+    #header
+      = render :partial => 'layouts/flashes
+    .container= yield
+HAML
 else
 
   file 'app/views/layouts/_flashes.html.erb', <<-ERB
@@ -69,13 +68,11 @@ else
     <div id="flash_<%= key %>"><%=h value %></div>
   <% end -%>
 </div>
-  ERB
+ERB
 
   file 'app/views/layouts/application.html.erb', <<-ERB
-<?xml version='1.0' encoding='utf-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title><%= page_title + ' - ' unless page_title.blank? %><%=t :app_name %></title>
@@ -86,11 +83,15 @@ else
     <![endif]-->
   </head>
   <body class="<%= body_class %>">
-    <%= render :partial => 'layouts/flashes' -%>
-    <%= yield %>
+    <div id="header">
+      <%= render :partial => 'layouts/flashes' -%>
+    </div>
+    <div class="container">  
+      <%= yield %>
+    </div>
   </body>
 </html>
-  ERB
+ERB
 
 end
 
@@ -103,5 +104,9 @@ initializer 'requires.rb',
 end
 }
 
+gem 'capistrano'
+rake "gems:install", :sudo=>true
+capify!
+
 git :add => "."
-git :commit => "-a -m 'Added basic ApplicationController, helpers, layout, flashes, app localizations, initializers'"
+git :commit => "-a -m 'Added basic ApplicationController, helpers, layout, flashes, app localizations, initializers, capistrano'"
