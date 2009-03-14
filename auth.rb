@@ -6,12 +6,19 @@ rake "gems:install", :sudo=>true
 
 generate 'session', 'user_session'
 
+file 'test/test_helper.rb', <<-TEST
+# test/test_helper.rb
+require 'authlogic/testing/test_unit_helpers'
+TEST
+
 user_model = ENV['USER_MODEL'] || ask("What should be the name of the user model? (leave it empty to skip)")
 
 unless user_model.blank?
   user_ident = ENV['USER_IDENT'] || ask("What is the identifier of a user? (e.g. login, email)")
 
-  migration = "#{user_ident}:string crypted_password:string password_salt:string persistence_token:string single_access_token:string perishable_token:string login_count:integer last_request_at:datetime current_login_at:datetime last_login_at:datetime current_login_ip:string last_login_ip:string"
+  migration = "#{user_ident}:string crypted_password:string password_salt:string persistence_token:string single_access_token:string perishable_token:string login_count:integer failed_login_count:integer last_request_at:datetime"
+
+#for acts_as_authenticated "login_count:integer failed_login_count:integer last_request_at:datetime current_login_at:datetime last_login_at:datetime current_login_ip:string last_login_ip:string"
 
   if File.exists?('vendor/plugins/rspec')
     generate 'rspec_model', user_model, migration

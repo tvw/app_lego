@@ -2,10 +2,6 @@ This fork installing every gem when it needed in legos.
 
 Some Legos are reworked.
 
-Haml lego needing my template runner [patch](http://rails.lighthouseapp.com/attachments/97321/template_runner_enhancement.diff) at [lighthouse](http://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/2163-interactive-rails-template)
-
-Tested with Rails 2.3 RC2
-
 # App LEGO
 
 These are modularized Rails application templates. The templates can be used on their own but more powerful app generation is possible through the `app_lego.rb` template.
@@ -20,13 +16,13 @@ These are modularized Rails application templates. The templates can be used on 
 
 The simplest way to use the template is to just provide the URL of `app_lego.rb` to the rails app generator and answer the questions.
 
-    $ rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
+    $ rails -m http://github.com/rubymood/app_lego/raw/master/app_lego.rb my_app
 
 The options and modules can be passed in through the `LEGOS` environment variable. If this is set the generator won't ask whether it should use braid and which modules it should use.
 
 Listing all the available options and modules:
 
-    $ LEGOS="braid,basic,rspec,haml,jquery,auth,couchdb,locale,misc" rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
+    $ LEGOS="braid,basic,rspec,haml,jquery,auth,locale,misc" rails -m http://github.com/rubymood/app_lego/raw/master/app_lego.rb my_app
 
 # Options
 

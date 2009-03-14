@@ -44,7 +44,7 @@ if File.exists?('vendor/plugins/haml')
     %div{:id => "flash_\#{key}"}= value
 HAML
 
-  file 'app/views/layouts/applictaion.html.haml', <<-HAML
+  file 'app/views/layouts/application.html.haml', <<-HAML
 !!!
 %html{html_attrs}
   %head
@@ -104,6 +104,7 @@ initializer 'requires.rb',
 end
 }
 
+gem 'quietbacktrace', :env => %w[development test]
 gem 'capistrano'
 rake "gems:install", :sudo=>true
 capify!
