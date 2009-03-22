@@ -1,3 +1,4 @@
+gem 'echoe'
 gem 'haml', :version => '>=2.1'
 gem 'chriseppstein-compass', :lib => 'compass', :source => 'http://gems.github.com'
 
@@ -12,11 +13,6 @@ unless system("gem list -i haml -v '>=2.1.0'")
 end
  
 rake "gems:install", :sudo => true
-
-run "git clone git://github.com/nex3/haml.git tmp/haml; cd tmp/haml; sudo rake install"
-run "rm -rf haml"
-
-rake "gems:install"
 
 run "haml --rails ."
 system "compass --rails -f #{ask("wich framework want to use")} ."
