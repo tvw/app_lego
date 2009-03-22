@@ -61,6 +61,6 @@ if @lego_options or yes?("Do you want to play LEGO?")
       log "applied", tmpl
     end
   end
-  rake "gems:install"
+  rake "gems:install", :sudo => true
   rake "db:migrate"
 end

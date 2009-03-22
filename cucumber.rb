@@ -1,7 +1,7 @@
-gem 'cucumber'
-gem 'webrat'
+gem 'cucumber', :env => test
+gem 'webrat', :env => test
 
-rake "gems:install"
+rake "gems:install", :sudo => true, :env => test
 
 generate 'cucumber'
 

@@ -5,6 +5,8 @@ file 'public/javascripts/jquery.js',
 file 'public/javascripts/jquery.min.js', 
   open('http://code.jquery.com/jquery-latest.min.js').read
 
+run "sudo gem install rubyzip"
+
 require 'rubygems'
 require 'zip/zip'
 
