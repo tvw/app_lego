@@ -15,7 +15,9 @@ end
 rake "gems:install", :sudo => true
 
 run "haml --rails ."
-system "compass --rails -f #{ask("wich framework want to use")} ."
+framework = ask("wich framework you want to use? defaults to blueprint") || "blueprint"
+
+system "compass --rails -f #{framework} ."
 
 git :add => "."
 git :commit => "-a -m 'Added haml for views and compass for css'"
