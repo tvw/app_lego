@@ -30,7 +30,7 @@ if locales
 
   gsub_file "config/environment.rb",
     /(#\s*)?config.i18n.default_locale.*$/,
-    "config.i18n.default_locale = '#{locales.first.gsub(/\.(yml|rb)$/, '')}'"
+    "config.i18n.default_locale = '#{locales.first.gsub(/\.(yml|rb)$/, '')}'" unless locales.first.nil?
 
   git :add => "."
   git :commit => "-a -m 'Added #{locales.join(",")} localizations'"
