@@ -1,6 +1,9 @@
+NAME=File.basename(root)
+
 # environment options
 @lego_options = ENV['LEGOS'] ? ENV['LEGOS'].downcase.split(/[,\s]+/) : false
 @used_legos = []
+
 
 def use_lego?(lego, question)
   use = if @lego_options
@@ -33,12 +36,17 @@ end
 
 modules = [
   ["basic",   "Do basic setup? (only exclude this if you already have a Rails app skeleton with Rails 2.3+ frozen, or as a gem)"],
+  ["frozen_edge", "Freeze edge Rails?"],
   ["rspec",   "Use RSpec instead of test/unit?"],
   ["haml",    "Use haml for views and sass for css?"],
+  ["hoptoad", "Use Hoptoad error notifier?"],
+  ["compass", "Use compass for CSS?"],
   ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
+  ["jrails",  "install jquery for rails plugin?"],
   ["auth",    "Add authentication module?"],
   ["couchdb", "Use CouchDB?"],
   ["locale",  "Add specific localizations?"],
+  ["layout", "Add basic layout?"],
   ["misc",    "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
 ]
 
