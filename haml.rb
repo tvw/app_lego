@@ -1,4 +1,4 @@
-gem 'echoe'
+#gem 'echoe'
 gem 'haml', :version => '>=2.1'
 
 unless system("gem list -i haml -v '>=2.1.0'")
