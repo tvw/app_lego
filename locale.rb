@@ -31,5 +31,14 @@ gsub_file "config/environment.rb",
   /(#\s*)?config.i18n.default_locale.*$/,
   "config.i18n.default_locale = '#{locales.first.gsub(/\.(yml|rb)$/, '')}'"
 
+Dir['config/locales/*.*'].map {|f| File.basename(f).split(".").first}.uniq.each do |locale|
+  file "config/locales/#{locale}.app.yml", <<-YAML
+#{locale}:
+  app_name: "#{NAME}"
+  YAML
+end
+
+git :rm => 'config/locales/en.yml'
+
 git :add => "."
 git :commit => "-a -m 'Added #{locales.join(",")} localizations'"

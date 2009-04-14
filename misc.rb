@@ -1,5 +1,5 @@
 # app files
-file 'app/controllers/application_controller.rb', 
+file 'app/controllers/application_controller.rb',
 %q{class ApplicationController < ActionController::Base
 
   helper :all
@@ -8,10 +8,12 @@ file 'app/controllers/application_controller.rb',
 
   filter_parameter_logging "password" unless Rails.env.development?
 
+  #{"include HoptoadNotifier::Catcher" if File.exists?('vendor/plugins/hoptoad_notifier')}
+
 end
 }
 
-file 'app/helpers/application_helper.rb', 
+file 'app/helpers/application_helper.rb',
 %q{module ApplicationHelper
   def page_title(title=nil)
     if title.nil?
@@ -86,7 +88,7 @@ ERB
     <div id="header">
       <%= render :partial => 'layouts/flashes' -%>
     </div>
-    <div class="container">  
+    <div class="container">
       <%= yield %>
     </div>
   </body>
@@ -98,7 +100,7 @@ end
 
 # initializers
 
-initializer 'requires.rb', 
+initializer 'requires.rb',
 %q{Dir[Rails.root.join('lib', '*.rb')].each do |f|
   require f
 end

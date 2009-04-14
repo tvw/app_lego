@@ -14,7 +14,7 @@ run("find . \\( -type d -empty \\) -and \\( -not -regex ./\\.git.* \\) -exec tou
 git :init
 
 # basic .gitignore file
-file '.gitignore', 
+file '.gitignore',
 %q{log/*.log
 log/*.pid
 db/*.db
