@@ -1,4 +1,5 @@
 gem "browsercms"
+rake "gems:install"
 rake "db:create"
 route "map.routes_for_browser_cms"
 generate :browser_cms
