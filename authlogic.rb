@@ -1,7 +1,7 @@
 # This installs Authlogic stuff at the moment but could support others too
 
 gem 'authlogic'
-rake "gems:install"
+rake "gems:install", :sudo => true
 
 rake "gems:install", :sudo=>true
 

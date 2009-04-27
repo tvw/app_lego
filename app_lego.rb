@@ -38,7 +38,7 @@ end
 if use_lego?("braid", "Use braid for vendor management?")
   
   gem "braid"
-  rake "gems:install"
+  rake "gems:install", :sudo => true
   
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
