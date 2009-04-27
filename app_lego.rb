@@ -101,7 +101,9 @@ modules = [
   # Others
 
   ["aasm", "Install aasm state machine?"],
-  ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],
+  ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],  
+  
+  ["browsercms",  "Add Browser CMS Gem?"],
 
   ["locale", "Add specific localizations?"],
   ["layout", "Add basic layout?"],
