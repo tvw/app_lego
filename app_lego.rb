@@ -36,8 +36,9 @@ end
 
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
-  run "sudo gem install braid" unless run("gem list -i braid", :show_response=>true)
-
+  
+  gem "braid"
+  
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
   end

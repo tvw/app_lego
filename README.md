@@ -12,13 +12,13 @@ These are modularized Rails application templates. The templates can be used on 
 
 The simplest way to use the template is to just provide the URL of `app_lego.rb` to the rails app generator and answer the questions.
 
-    $ rails -m http://github.com/cicloid/app_lego/raw/master/app_lego.rb my_app
+    $ rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
 
 The options and modules can be passed in through the `LEGOS` environment variable. If this is set the generator won't ask whether it should use braid and which modules it should use.
 
 Listing all the available options and modules:
 
-    $ LEGOS="braid,basic,rspec,machinist,cucumber,haml,jquery,auth,couchdb,locale,misc" rails -m http://github.com/cicloid/app_lego/raw/master/app_lego.rb my_app
+    $ LEGOS="braid,basic,rspec,haml,jquery,auth,couchdb,locale,misc" rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
 
 # Options
 
@@ -32,12 +32,6 @@ The **basic** module initializes the Rails application in a git repository, remo
 
 The **RSpec** module remove the `test` directory and installs the plugins necessary for RSpec. It also runs the rspec generator.
 
-The **Cucumber** module install the Webrat and Cucumber gems and run the 'cucumber' generator.
-
-The **Machinist** module install the Machinist plugin, delete the fixtures folder, creates a spec/blueprints folder and generates basics blueprints_helper.rb and spec_helper.rb
-
-The **Haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
-
 The **Haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
 
 The **jQuery** module removes the default javascript files and installes jQuery, jQuery-UI and the jQuery Form plugin. The first two come with minified and full versions too.
@@ -48,7 +42,7 @@ The **CouchDB** module installs the [CouchRest](http://github.com/jchris/couchre
 
 The **locale** module will download localization files from Sven Fuchs' [rails-i18n](http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale) repository. The generator will ask for the list of the localizations the user wants, but it can be given through the `LOCALES` environment variable too. The list is comma separated, and where no extension is given `.yml` is assumed. The first locale in the list will be used as the default locale. Example:
 
-    $ LOCALES='hu,de,nl.rb' LEGOS='locale' rails -m http://github.com/cicloid/app_lego/raw/master/app_lego.rb my_app
+    $ LOCALES='hu,de,nl.rb' LEGOS='locale' rails -m http://github.com/lackac/app_lego/raw/master/app_lego.rb my_app
 
 The locale module also checks for module specific localizations in `locales/` under the same path App LEGO was called from.
   
