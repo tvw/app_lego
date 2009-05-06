@@ -39,6 +39,7 @@ end
 modules = [
   ["basic",   "Do basic setup? (only exclude this if you already have a Rails app skeleton with Rails 2.3+ frozen, or as a gem)"],
   ["frozen_edge", "Freeze edge Rails?"],
+  ["cucumber","Install Cucumber/Webrat testing framework?"],
   ["rspec",   "Use RSpec instead of test/unit?"],
   ["haml",    "Use haml for views and sass for css?"],
   ["hoptoad", "Use Hoptoad error notifier?"],
