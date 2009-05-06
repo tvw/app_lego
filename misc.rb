@@ -38,6 +38,8 @@ Dir['config/locales/*.*'].map {|f| File.basename(f).split(".").first}.uniq.each 
 end
 
 
+stylesheet_path_prefix = File.exists?('public/stylesheets/compiled') ? 'compiled/' : ''
+
 if File.exists?('vendor/plugins/haml')
 
   file 'app/views/layouts/_flashes.html.haml', <<-HAML
@@ -53,14 +55,16 @@ HAML
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %title= "\#{page_title + ' - ' unless page_title.blank?}\#{t(:app_name)}"
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
+    = stylesheet_link_tag '#{stylesheet_path_prefix}screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag '#{stylesheet_path_prefix}print.css', :media => 'print'
     /[if IE]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+      = stylesheet_link_tag '#{stylesheet_path_prefix}ie.css', :media => 'screen, projection'
+    = javascript_include_tag :defaults
   %body{:class => body_class}
     #header
       = render :partial => 'layouts/flashes'
-    .container= yield
+    .container
+      = yield
 HAML
 else
 
@@ -78,11 +82,12 @@ ERB
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <title><%= page_title + ' - ' unless page_title.blank? %><%=t :app_name %></title>
-    <%= stylesheet_link_tag 'screen.css', :media => 'screen, projection' %>
-    <%= stylesheet_link_tag 'print.css', :media => 'print' %>
+    <%= stylesheet_link_tag '#{stylesheet_path_prefix}screen.css', :media => 'screen, projection' %>
+    <%= stylesheet_link_tag '#{stylesheet_path_prefix}print.css', :media => 'print' %>
     <!--[if IE]>
-    <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection' %>
+    <%= stylesheet_link_tag '#{stylesheet_path_prefix}ie.css', :media => 'screen, projection' %>
     <![endif]-->
+    <%= javascript_include_tag :defaults %>
   </head>
   <body class="<%= body_class %>">
     <div id="header">
