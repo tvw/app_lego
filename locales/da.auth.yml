@@ -1,0 +1,22 @@
+da:
+  authlogic:
+    error_messages:
+      login_blank: 'skal udfyldes'
+      login_not_found: 'ikke fundet'
+      login_invalid: 'må kun indeholde bogstaver, tal, mellemrum og .-@'
+      consecutive_failed_logins_limit_exceeded: 'Gentagne login-forsøg mislykkedes. Din konto er nu spærret.'
+      email_invalid: 'skal ligne en email-adresse'
+      password_blank: 'skal udfyldes'
+      password_invalid: 'er ikke gyldigt'
+      not_active: 'Din konto er ikke aktiv.'
+      not_confirmed: 'Din konto er ikke bekræftet.'
+      not_approved: 'Din konto er ikke godkendt.'
+      no_authentication_details: 'Du gav ikke nogen oplysninger for login.'
+    models:
+      user_session: UserSession
+    attributes:
+      user_session:
+        login: 'login'
+        email: 'email'
+        password: 'password'
+        remember_me: 'husk mig'
