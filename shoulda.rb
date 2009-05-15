@@ -1,4 +1,4 @@
-gem 'thoughtbot-shoulda', :lib => "shoulda", :source => "http://gems.github.com", :env => test
+gem 'thoughtbot-shoulda', :lib => "shoulda", :source => "http://gems.github.com"
 
 rake "gems:install", :sudo => true
 
