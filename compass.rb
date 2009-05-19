@@ -13,5 +13,12 @@ framework = "blueprint" if framework.nil? || framework.empty?
 
 run "echo -e 'y\ny\n' | compass --rails -f #{framework} ."
 
+compiled_dir = File.join %w(public stylesheets compiled)
+if File.exists? compiled_dir
+  File.open(".gitignore", "a") do |f|
+    f << compiled_dir << "\n"
+  end
+end
+
 git :add => "."
 git :commit => "-a -m 'Added compass for css using #{framework} framework'"
