@@ -6,10 +6,11 @@ rake "gems:install", :sudo=>true
 
 generate 'session', 'user_session'
 
-file 'test/test_helper.rb', <<-TEST
-# test/test_helper.rb
-require 'authlogic/testing/test_unit_helpers'
-TEST
+# require in [test|spec]_helper.rb
+test_or_spec = (File.exists?('spec') ? "spec" : "test")
+File.open(File.join(test_or_spec,"#{test_or_spec}_helper.rb"), "a") do |file|
+  file << "\nrequire 'authlogic/test_case'\n"
+end
 
 user_model = ENV['USER_MODEL'] || ask("What should be the name of the user model? (leave it empty to skip)")
 
@@ -20,7 +21,7 @@ unless user_model.blank?
 
 #for acts_as_authenticated "login_count:integer failed_login_count:integer last_request_at:datetime current_login_at:datetime last_login_at:datetime current_login_ip:string last_login_ip:string"
 
-  if File.exists?('vendor/plugins/rspec')
+  if File.exists?('rspec')
     generate 'rspec_model', user_model, migration
   else
     generate 'model', user_model, migration
