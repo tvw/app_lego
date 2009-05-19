@@ -34,7 +34,6 @@ Dir['config/locales/*.*'].map {|f| File.basename(f).split(".").first}.uniq.each 
   YAML
 end
 
-
 stylesheet_path_prefix = File.exists?('public/stylesheets/compiled') ? 'compiled/' : ''
 
 if File.exists?('vendor/plugins/haml')
@@ -50,18 +49,27 @@ HAML
 %html{html_attrs}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    -# %meta{:name => "description" content="A collection of Rails templates I use for projects"}
+    -# %link{:rel => "alternate", :href => "http://github.com/feeds/rayngwf/commits/app_lego/master",
+      :title => "Recent Commits to app_lego:master", :type => "application/atom+xml"}
     %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}
     %title= "\#{page_title + ' - ' unless page_title.blank?}\#{t(:app_name)}"
     = stylesheet_link_tag '#{stylesheet_path_prefix}screen.css', :media => 'screen, projection'
     = stylesheet_link_tag '#{stylesheet_path_prefix}print.css', :media => 'print'
     /[if IE]
       = stylesheet_link_tag '#{stylesheet_path_prefix}ie.css', :media => 'screen, projection'
+    = yield :local_styles
     = javascript_include_tag :defaults
+    = yield :unobtrusive_javascript
   %body{:class => body_class}
-    #header
-      = render :partial => 'layouts/flashes'
-    .container
-      = yield
+    #container
+      #header
+        %h1 app_name
+      #sidebar
+      #content
+        = render :partial => 'layouts/flashes'
+        = yield
+      #footer
 HAML
 else
 
@@ -84,7 +92,9 @@ ERB
     <!--[if IE]>
     <%= stylesheet_link_tag '#{stylesheet_path_prefix}ie.css', :media => 'screen, projection' %>
     <![endif]-->
+    <%= yield :local_styles %>
     <%= javascript_include_tag :defaults %>
+    <%= yield :unobtrusive_javascript %>
   </head>
   <body class="<%= body_class %>">
     <div id="header">
@@ -100,8 +110,15 @@ ERB
 end
 
 
-# initializers
+# convert all app/views/*/*.html.erb to .haml (html2haml) if haml?
+# TODO test this!!!
+if haml?
+  erb_files = Dir['app/views/*/*.html.erb']
+  erb_files.each do |erb|
+    run "html2haml #{erb} #{File.basename(erb) << '.haml'}"
+end
 
+# initializers
 initializer 'requires.rb',
 %q{Dir[Rails.root.join('lib', '*.rb')].each do |f|
   require f

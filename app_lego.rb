@@ -1,5 +1,3 @@
-NAME=File.basename(root)
-
 # environment options
 @lego_options = ENV['LEGOS'] ? ENV['LEGOS'].downcase.split(/[,\s]+/) : false
 @used_legos = []
@@ -17,7 +15,7 @@ end
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
   run "sudo gem install braid" unless run("gem list -i braid", :show_response=>true)
-  
+
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
   end
@@ -38,15 +36,16 @@ end
 modules = [
   ["basic",   "Do basic setup? (only exclude this if you already have a Rails app skeleton with Rails 2.3+ frozen, or as a gem)"],
   ["frozen_edge", "Freeze edge Rails?"],
-  ["cucumber","Install Cucumber/Webrat testing framework?"],
-  ["rspec",   "Use RSpec instead of test/unit?"],
   ["haml",    "Use haml for views and sass for css?"],
-  ["hoptoad", "Use Hoptoad error notifier?"],
   ["compass", "Use compass for CSS?"],
+  ["rspec",   "Use RSpec instead of test/unit?"],
+  ["cucumber","Install Cucumber/Webrat testing framework?"],
+  ["hoptoad", "Use Hoptoad error notifier?"],
   ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
   ["jrails",  "install jquery for rails plugin?"],
   ["auth",    "Add authentication module?"],
   ["locale",  "Add specific localizations?"],
+  ["welcome-scaffold", "Add welcome page?"],
   ["layout", "Add basic layout?"],
   ["misc",    "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
   ["clearance",    "Add clearance engine?"],

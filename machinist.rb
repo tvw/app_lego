@@ -33,7 +33,6 @@ Spec::Runner.configure do |config|
 end
 SH
 
-git :add => '.'
-
-git :commit => "-a -m 'Added machinist. fixtures aren't fun.'"
+git :add => "."
+git :commit => "-m 'Added machinist. fixtures aren't fun.'"
 
