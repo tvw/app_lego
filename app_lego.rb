@@ -4,7 +4,6 @@ NAME=File.basename(root)
 @lego_options = ENV['LEGOS'] ? ENV['LEGOS'].downcase.split(/[,\s]+/) : false
 @used_legos = []
 
-
 def use_lego?(lego, question)
   use = if @lego_options
     @lego_options.include?(lego)
@@ -52,7 +51,6 @@ modules = [
   ["misc",    "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
   ["clearance",    "Add clearance engine?"],
   ["factory_girl",    "Add factory_girl fixture generation?"],
-  ["cucumber",    "Add cucumber BDD framework?"],
   ["shoulda",    "Add shoulda testing capibilities?"],
   ["typus",    "Add typus admin panel handling?"],
 ]

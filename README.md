@@ -58,8 +58,6 @@ So far this is all. Feel free to fork the repository and send me pull requests i
 
 # Disclaimer
 
-
-
 I borrowed some ideas from Jeremy McAnally's [rails-templates](http://github.com/jeremymcanally/rails-templates/tree/master) repository.
 
 App LEGO is licensed under the MIT License.
