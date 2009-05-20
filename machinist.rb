@@ -34,5 +34,5 @@ end
 SH
 
 git :add => "."
-git :commit => "-m 'Added machinist. fixtures aren't fun.'"
+git :commit => "-m 'Added machinist. fixtures aren`t fun.'"
 

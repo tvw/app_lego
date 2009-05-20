@@ -1,3 +1,7 @@
+# see http://github.com/nex3/haml
+# see also http://github.com/douglasjarquin/ruby-haml-tmbundle/
+# see also http://github.com/seaofclouds/sass-textmate-bundle
+
 #gem 'echoe'
 gem 'haml', :version => '>=2.1'
 

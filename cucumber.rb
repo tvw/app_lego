@@ -1,3 +1,5 @@
+# see http://github.com/aslakhellesoy/cucumber
+# see also http://github.com/bmabey/cucumber-tmbundle
 gem 'cucumber', :env => :test
 gem 'webrat', :env => :test
 

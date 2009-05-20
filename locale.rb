@@ -34,7 +34,7 @@ gsub_file "config/environment.rb",
 Dir['config/locales/*.*'].map {|f| File.basename(f).split(".").first}.uniq.each do |locale|
   file "config/locales/#{locale}.app.yml", <<-YAML
 #{locale}:
-  app_name: "#{NAME}"
+  app_name: "#{File.basename(root).titleize}"
   YAML
 end
 

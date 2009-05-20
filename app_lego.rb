@@ -36,21 +36,37 @@ end
 modules = [
   ["basic",   "Do basic setup? (only exclude this if you already have a Rails app skeleton with Rails 2.3+ frozen, or as a gem)"],
   ["frozen_edge", "Freeze edge Rails?"],
-  ["haml",    "Use haml for views and sass for css?"],
+  ["sqlite3", "Use sqlite3?"],
+
+  ["haml",    "Use haml for views and sass for css?"], # must be before generating any templates
   ["compass", "Use compass for CSS?"],
-  ["rspec",   "Use RSpec instead of test/unit?"],
-  ["cucumber","Install Cucumber/Webrat testing framework?"],
+
+  ["rspec",   "Use RSpec instead of Test::Unit?"], # must be before any generators etc. who may test for RSpec
+  ["shoulda", "Add Shoulda testing capabilities?"],
+
+  ["cucumber","Install Cucumber/Webrat integration testing framework?"],
+  ["webrat","Install Webrat web browser simulator for integration testing?"],
+
+  ["factory_girl","Add factory_girl fixture generation?"],
+  ["machinist","Add machinist fixture generation?"],
+  ["object_daddy","Add object_daddy fixture generation?"],
+
   ["hoptoad", "Use Hoptoad error notifier?"],
   ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
   ["jrails",  "install jquery for rails plugin?"],
+
   ["auth",    "Add authentication module?"],
+  ["authlogic-scaffold",    "Add scaffold for authlogic?"],
+
+  ["aasm", "install aasm state machine?"],
+  ["acts-as-taggeable-on", "install acts-as-taggeable-on?"],
+
   ["locale",  "Add specific localizations?"],
-  ["welcome-scaffold", "Add welcome page?"],
   ["layout", "Add basic layout?"],
   ["misc",    "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
+  ["welcome-scaffold", "Add a welcome page scaffold?"],
+
   ["clearance",    "Add clearance engine?"],
-  ["factory_girl",    "Add factory_girl fixture generation?"],
-  ["shoulda",    "Add shoulda testing capibilities?"],
   ["typus",    "Add typus admin panel handling?"],
 ]
 
