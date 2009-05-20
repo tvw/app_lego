@@ -47,6 +47,8 @@ modules = [
   ["cucumber","Install Cucumber/Webrat integration testing framework?"],
   ["webrat","Install Webrat web browser simulator for integration testing?"],
 
+  ["mocha", "Add Mocha mocking and stubbing library?"],
+
   ["factory_girl","Add factory_girl fixture generation?"],
   ["machinist","Add machinist fixture generation?"],
   ["object_daddy","Add object_daddy fixture generation?"],
