@@ -29,6 +29,11 @@ def use_lego?(lego, question, *deps)
   use
 end
 
+# Check haml using
+def haml?
+  File.exists?('vendor/plugins/haml')
+end
+
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
   run "sudo gem install braid" unless run("gem list -i braid", :show_response=>true)
@@ -60,7 +65,7 @@ modules = [
 
   # Stylesheets
 
-  ["haml",    "Use haml for views and sass for css?"], # must be before generating any templates
+  ["haml",    "Use Haml for views and Sass for CSS?"], # must be before generating any templates
   ["compass", "Use compass for CSS?", :haml ], # install only if haml installed
   
   # Testing
@@ -69,31 +74,34 @@ modules = [
   ["shoulda", "Add Shoulda testing capabilities?", :no_rspec ], # don't install with rspec
 
   ["cucumber","Install Cucumber/Webrat integration testing framework?"],
-  ["webrat",  "Install Webrat web browser simulator for integration testing?", :cucumber ], # only if cucumber installed
+  ["webrat",  "Install Webrat web browser simulator for integration testing?", :no_cucumber ], # only if cucumber installed
 
-  ["mocha", "Add Mocha mocking and stubbing library?"],
+  ["mocha",   "Add Mocha mocking and stubbing library?"],
 
-  ["factory_girl","Add factory_girl fixture generation?" ],
-  ["machinist","Add machinist fixture generation?", :no_factory_girl ],
-  ["object_daddy","Add object_daddy fixture generation?", :no_factory_girl, :no_machinist ],
+  ["factory_girl", "Add factory_girl fixture generation?" ],
+  ["machinist",    "Add machinist fixture generation?", :no_factory_girl ],
+  ["object_daddy", "Add object_daddy fixture generation?", :no_factory_girl, :no_machinist ],
 
   # Modules
 
-  ["hoptoad", "Use Hoptoad error notifier?"],  
+  ["hoptoad", "Use Hoptoad error notifier?"],
   
   # Javascripts
   
-  ["jquery",  "Use jQuery instead of Prototype + Script.aculo.us?"],
-  ["jrails", "install jquery for rails plugin?", :jquery ], # requires jquery
+  ["jrails",  "Use jQuery with jRails plugin?" ],
+  ["jquery",  "Use jQuery without jRails plugin?", :no_jrails ], # install jquery without jrails
   
   # Authentication
 
-  ["auth", "Add AuthLogic authentication engine?"],
-  ["authlogic-scaffold", "Add scaffold for Authlogic?", :auth ], # requires authentication
-  ["clearance", "Add Clearance authentication engine?", :no_auth ],
+  ["authlogic", "Add AuthLogic authentication engine?"],
+  ["authlogic-scaffold", "Add scaffold for Authlogic?", :authlogic ], # requires authentication
+  
+  ["clearance", "Add Clearance authentication engine?", :no_authlogic ],
 
-  ["aasm", "install aasm state machine?"],
-  ["acts-as-taggeable-on", "install acts-as-taggeable-on?"],
+  # Others
+
+  ["aasm", "Install aasm state machine?"],
+  ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],
 
   ["locale", "Add specific localizations?"],
   ["layout", "Add basic layout?"],

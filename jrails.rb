@@ -9,5 +9,11 @@ dest_file = File.join('public', js_dir, js_file)
 src_file = File.join('vendor', 'plugins', 'jrails_in_place_editing', js_dir, js_file)
 FileUtils.cp(src_file, dest_file)
 
+file "public/javascripts/application.js", <<-JS
+$(function() {
+  // ...
+});
+JS
+
 git :add => "."
 git :commit => "-m 'Installed JRails'"

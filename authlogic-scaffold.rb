@@ -4,7 +4,6 @@ user_model ||= ENV['USER_MODEL'] || ask("What should be the name of the user mod
 user_model = user_model.underscore
 user_ident ||= ENV['USER_IDENT'] || ask("What is the identifier of a user? (e.g. login, email)")
 
-
 # Add some helper methods at the end of ApplicationController
 sentinel = "\nend"
 gsub_file 'app/controllers/application_controller.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
@@ -164,10 +163,6 @@ end
 USERS
 
 route "map.resources :#{user_model.pluralize}"
-
-def haml?
-  File.exists?('vendor/plugins/haml')
-end
 
 # Create create/edit views
 if haml?
