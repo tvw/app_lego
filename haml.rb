@@ -15,7 +15,7 @@ unless system("gem list -i haml -v '>=2.1.0'")
   end
 end
 
-rake "gems:install", :sudo => true
+rake "gems:install", :sudo => use_sudo?
 
 run "haml --rails ."
 

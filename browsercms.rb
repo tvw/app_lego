@@ -1,7 +1,7 @@
 gem "browsermedia-browsercms", :lib => 'browser_cms', :source => 'http://gems.github.com'
 
 rake "db:create"
-rake "gems:install", :sudo => true
+rake "gems:install", :sudo => use_sudo?
 
 route "map.routes_for_browser_cms"
 

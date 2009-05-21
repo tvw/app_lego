@@ -1,6 +1,11 @@
 # environment options
 @lego_options = ENV['LEGOS'] ? ENV['LEGOS'].downcase.split(/[,\s]+/) : false
 @used_legos = []
+@use_sudo = true
+
+def use_sudo?
+  @use_sudo
+end
 
 # Check for module dependencies
 def deps_satisfied?(deps)
@@ -38,7 +43,7 @@ end
 if use_lego?("braid", "Use braid for vendor management?")
   
   gem "braid"
-  rake "gems:install", :sudo => true
+  rake "gems:install", :sudo => use_sudo?
   
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
@@ -135,6 +140,6 @@ if @lego_options or yes?("Do you want to play LEGO?")
     end
   end
   
-  rake "gems:install", :sudo => true
+  rake "gems:install", :sudo => use_sudo?
   rake "db:migrate"
 end
