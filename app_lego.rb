@@ -77,8 +77,9 @@ modules = [
   
   # Testing
 
-  ["rspec",   "Use RSpec instead of Test::Unit?"], # must be before any generators etc. who may test for RSpec
-  ["shoulda", "Add Shoulda testing capabilities?", :no_rspec ], # don't install with rspec
+  ["rspec",      "Use RSpec instead of Test::Unit?"], # must be before any generators etc. who may test for RSpec
+  ["remarkable", "Add Remarkable testing capabilities?", :rspec ], # needs rspec
+  ["shoulda",    "Add Shoulda testing capabilities?", :no_rspec ], # don't install with rspec
 
   ["cucumber","Install Cucumber/Webrat integration testing framework?"],
   ["webrat",  "Install Webrat web browser simulator for integration testing?", :no_cucumber ], # only if cucumber installed
