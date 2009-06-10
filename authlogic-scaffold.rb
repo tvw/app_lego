@@ -1,3 +1,5 @@
+load_template File.join(File.dirname(template), "base.rb") unless defined? AppLego::Base
+
 # Create Authlogic user controller/views
 
 user_model ||= ENV['USER_MODEL'] || ask("What should be the name of the user model?")
