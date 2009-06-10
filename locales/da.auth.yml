@@ -20,3 +20,47 @@ da:
         email: 'email'
         password: 'password'
         remember_me: 'husk mig'
+
+
+
+  # misc translations for user and user_session
+  activerecord:
+    models:
+      user:
+        one: Bruger
+        other: Brugere
+    attributes:
+      user:
+        login : "Login"
+        login_alt : "Bruger-id"
+        email : "Email"
+        user_name : "Navn"
+        password : "Password"
+        password_confirmation : "Bekræft password"
+
+  user_session:
+    log_in : "Log ind"
+    log_out : "Log ud"
+    logged_in : "Logget ind"
+    logged_in_as : "Logget ind som {{login}}"
+    logged_out : "Du er nu logget ud."
+    login_failed : "Kunne ikke logge ind som '{{login}}'"
+    create_account : "Opret bruger"
+    new_user_sign_up : "Opret som ny bruger"
+    not_logged_in : "Ikke logget ind"
+    remember_me : "Husk mig"
+    #sign_up : "Sign up"
+    #signup_complete : "Signup complete! Please sign in to continue."
+    #signup_complete_with_activation : "Thanks for signing up!  We're sending you an email with your activation code."
+    #signup_problem : "We couldn't set up that account, sorry.  Please try again, or contact an admin (link is above)."
+    #account_activated : "{{login}} your account has been activated.  Welcome aboard!"
+    #account_activation_url_message : "Visit this url to activate your account:"
+    #account_created : "Brugeren {{login}} er oprettet."
+    #activation_complete_email_subject : 'Your account has been activated!'
+    #activation_required_email_subject : 'Please activate your new account'
+    #blank_activation_code : "The activation code was missing.  Please follow the URL from your email."
+    #bogus_activation_code : "We couldn't find a {{mode}} with that activation code -- check your email? Or maybe you've already activated -- try signing in."
+
+  users:
+    save_changes: "Gem ændringer"
+    user_saved: "Ændringerne er gemt."

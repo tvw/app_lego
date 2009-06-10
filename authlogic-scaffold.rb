@@ -5,9 +5,7 @@ user_model = user_model.underscore
 user_ident ||= ENV['USER_IDENT'] || ask("What is the identifier of a user? (e.g. login, email)")
 
 # Add some helper methods at the end of ApplicationController
-sentinel = "\nend"
-gsub_file 'app/controllers/application_controller.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
-  data = <<-AUTHLOGIC
+application_controller <<-AUTHLOGIC
 
   # Authlogic-specific helper methods
   helper_method :current_user
@@ -51,8 +49,6 @@ gsub_file 'app/controllers/application_controller.rb', /(#{Regexp.escape(sentine
     end
 
 AUTHLOGIC
-   data << match
-end
 
 
 # Create UserSession controller and minimal log-in/-out views
@@ -88,7 +84,7 @@ route "map.resources :#{user_model}_sessions"
 route "map.login 'login', :controller => '#{user_model}_sessions', :action => 'new'"
 route "map.logout 'logout', :controller => '#{user_model}_sessions', :action => 'destroy'"
 
-if haml?
+if use_haml?
   file File.join("app", "views", "#{user_model}_sessions", "new.html.haml"), <<-NEW
 %h1 Log in
 - form_for @#{user_model}_session do |f|
@@ -165,7 +161,7 @@ USERS
 route "map.resources :#{user_model.pluralize}"
 
 # Create create/edit views
-if haml?
+if use_haml?
   file File.join("app", "views", user_model.pluralize, "new.html.haml"), <<-NEW
 %h2 New #{user_model.classify}
 = render :partial => 'form'

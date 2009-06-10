@@ -1,3 +1,6 @@
+# Create an initial layout for application
+
+# Detect whether stylesheets are placed in compiled directory
 stylesheet_path_prefix = File.exists?('public/stylesheets/compiled') ? 'compiled/' : ''
 
 if File.exists?('vendor/plugins/haml')

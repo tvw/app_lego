@@ -1,11 +1,8 @@
+load_template File.join(File.dirname(template), "base.rb")
+
 # environment options
 @lego_options = ENV['LEGOS'] ? ENV['LEGOS'].downcase.split(/[,\s]+/) : false
 @used_legos = []
-@use_sudo = true
-
-def use_sudo?
-  @use_sudo
-end
 
 # Check for module dependencies
 def deps_satisfied?(deps)
@@ -34,32 +31,11 @@ def use_lego?(lego, question, *deps)
   use
 end
 
-# Check haml using
-def haml?
-  File.exists?('vendor/plugins/haml')
-end
-
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
-
   gem "braid"
   rake "gems:install", :sudo => use_sudo?
-
-  def braid(repo, dir, type=nil)
-    run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
-  end
-
-  def plugin(name, options)
-    log "braid plugin", name
-
-    if options[:git] || options[:svn]
-      in_root do
-        `braid add -p #{options[:svn] || options[:git]}`
-      end
-    else
-      log "! no git or svn provided for #{name}. skipping..."
-    end
-  end
+  FileUtils.touch(".braids")
 end
 
 modules = [

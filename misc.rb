@@ -113,9 +113,9 @@ ERB
 end
 
 
-# convert all app/views/*/*.html.erb to .haml (html2haml) if haml?
+# convert all app/views/*/*.html.erb to .haml (html2haml) if use_haml?
 # TODO test this!!!
-if haml?
+if use_haml?
   erb_files = Dir['app/views/*/*.html.erb']
   erb_files.each do |erb|
     run "html2haml #{erb} #{File.basename(erb) << '.haml'}"
