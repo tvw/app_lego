@@ -15,3 +15,6 @@ environment 'config.action_view.cache_template_loading = false', :env => "produc
 generate :browser_cms_demo_site if yes?("Add demo data for browsercms?")
 
 rake "db:migrate"
+
+git :add => "."
+git :commit => "-a -m 'Added BrowserCMS'"

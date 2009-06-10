@@ -16,7 +16,7 @@ def deps_satisfied?(deps)
       return false unless @used_legos.include?( dep.to_s )
     end
   end
-  
+
   true
 end
 
@@ -28,9 +28,9 @@ def use_lego?(lego, question, *deps)
   else
     false
   end
-  
+
   @used_legos << lego if use
-  
+
   use
 end
 
@@ -41,10 +41,10 @@ end
 
 # braid helpers
 if use_lego?("braid", "Use braid for vendor management?")
-  
+
   gem "braid"
   rake "gems:install", :sudo => use_sudo?
-  
+
   def braid(repo, dir, type=nil)
     run "braid add #{"-t #{type} " if type}#{repo} #{dir}"
   end
@@ -74,7 +74,7 @@ modules = [
 
   ["haml",    "Use Haml for views and Sass for CSS?"], # must be before generating any templates
   ["compass", "Use compass for CSS?", :haml ], # install only if haml installed
-  
+
   # Testing
 
   ["rspec",      "Use RSpec instead of Test::Unit?"], # must be before any generators etc. who may test for RSpec
@@ -93,38 +93,38 @@ modules = [
   # Modules
 
   ["hoptoad", "Use Hoptoad error notifier?"],
-  
+
   # Javascripts
-  
+
   ["jrails",  "Use jQuery with jRails plugin?" ],
   ["jquery",  "Use jQuery without jRails plugin?", :no_jrails ], # install jquery without jrails
-  
+
   # Authentication
 
   ["authlogic", "Add AuthLogic authentication engine?"],
   ["authlogic-scaffold", "Add scaffold for Authlogic?", :authlogic ], # requires authentication
-  
+
   ["clearance", "Add Clearance authentication engine?", :no_authlogic ],
 
   # Others
 
   ["aasm", "Install aasm state machine?"],
-  ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],  
-  
+  ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],
+
   ["browsercms",  "Add Browser CMS Gem?"],
 
   ["locale", "Add specific localizations?"],
   ["layout", "Add basic layout?"],
   ["misc", "Add miscellaneous stuff (helpers, basic layout, flashes, initializers)?"],
   ["welcome-scaffold", "Add a welcome page scaffold?"],
-  
+
   # Admin
 
   ["typus", "Add Typus admin panel?"],
 ]
 
 if @lego_options or yes?("Do you want to play LEGO?")
-  
+
   @base_path = if template =~ %r{^(/|\w+://)}
     File.dirname(template)
   else
@@ -140,7 +140,7 @@ if @lego_options or yes?("Do you want to play LEGO?")
       log "applied", tmpl
     end
   end
-  
+
   rake "gems:install", :sudo => use_sudo?
   rake "db:migrate"
 end

@@ -1,8 +1,5 @@
 # remove tmp dirs
-#run "rmdir tmp/{pids,sessions,sockets,cache}"
-["./tmp/pids", "./tmp/sessions", "./tmp/sockets", "./tmp/cache"].each do |f|
-  run("rmdir ./#{f}")
-end
+run "rm -Rf tmp/{pids,sessions,sockets,cache}"
 
 # remove unnecessary stuff
 run "rm README public/index.html public/images/rails.png"
