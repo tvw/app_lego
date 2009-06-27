@@ -10,15 +10,17 @@ end
 
 # Run generators.
 
-if yes?("Create Post and Page models?")
+if yes?("Create example Post and Page models?")
   generate("scaffold", "Post title:string body:text published:boolean", "--skip-timestamps")
   generate("scaffold", "Page title:string body:text published:boolean", "--skip-timestamps")
-  rake("db:migrate")
-  run "rm public/index.html"
+  
+  rake "db:migrate"
+  
   route "map.root :controller => 'posts'"
 end
 
 # Typus generator
 
-generate("typus")
-rake("db:migrate")
+generate "typus"
+
+rake "db:migrate"

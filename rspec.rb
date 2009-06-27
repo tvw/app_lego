@@ -1,8 +1,6 @@
 gem 'rspec', :lib => false, :env => :test
 gem 'rspec-rails', :lib => false, :env => :test
 
-rake 'gems:install', :sudo => use_sudo?, :env => :test
-
 generate "rspec"
 
 # remove test dir

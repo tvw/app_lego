@@ -3,8 +3,6 @@
 gem 'cucumber', :env => :test
 gem 'webrat', :env => :test
 
-rake "gems:install", :sudo => use_sudo?, :env => :test
-
 generate 'cucumber'
 
 git :add => '.'

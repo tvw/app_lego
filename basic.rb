@@ -30,6 +30,10 @@ public/stylesheets/*_[0-9]*.css
 public/attachments
 }
 
+unless yes?("Do you want to use timestapped migrations?")
+  gsub_file 'config/environment.rb', /(Rails::Initializer.*)/, "\\1\n  config.active_record.timestamped_migrations = false"
+end
+
 # commit changes
 git :add => "."
 git :commit => "-a -m 'Setting up a new rails app'"
