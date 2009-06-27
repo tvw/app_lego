@@ -1,7 +1,7 @@
 file '.project', <<-FE
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-        <name>#{ask("Enter project name:")}</name>
+        <name>#{File.basename(root).titleize}</name>
         <comment></comment>
         <projects>
         </projects>
