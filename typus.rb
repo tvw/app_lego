@@ -24,3 +24,6 @@ end
 generate "typus"
 
 rake "db:migrate"
+
+git :add => "."
+git :commit => "-m 'Added Typus admin panel'"
