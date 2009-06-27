@@ -3,6 +3,22 @@
 # Detect whether stylesheets are placed in compiled directory
 stylesheet_path_prefix = File.exists?('public/stylesheets/compiled') ? 'compiled/' : ''
 
+file 'app/helpers/application_helper.rb',
+%q{module ApplicationHelper
+  def page_title(title=nil)
+    if title.nil?
+      @page_title ||= ""
+    else
+      @page_title = title
+    end
+  end
+
+  def body_class
+    "#{controller.controller_name} #{controller.controller_name}_#{controller.action_name}"
+  end
+end
+}
+
 if File.exists?('vendor/plugins/haml')
 
   file 'app/views/layouts/_flashes.html.haml', <<-HAML
