@@ -274,3 +274,7 @@ end
 # #user-nav
 #   +float(right)
 #   font-size: 12px
+
+
+git :add => "."
+git :commit => "-a -m 'Added AuthLogic scaffold'"
