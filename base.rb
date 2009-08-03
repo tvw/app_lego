@@ -1,6 +1,18 @@
 module AppLego
   module Base
 
+    # TODO under development...
+    def depends(*bricks)
+      bricks.each do |brick|
+        #TODO install brick
+      end
+    end
+
+
+    ##
+    ## additions to rails-2.x.y/lib/rails_generator/generators/applications/app/template_runner.rb
+    ##
+
     # Has the specified gem alreaady been added?
     def gem_installed?(name, options = {})
       env = options.delete(:env)
@@ -48,7 +60,7 @@ module AppLego
 
     def use_braid?
       in_root do
-        File.exists?(".braids")
+        return File.exists?(".braids")
       end
     end
 
@@ -82,20 +94,52 @@ module AppLego
       end
     end
 
-    # Add data to end of ApplicationController
+    # Add data to end of ApplicationController (convenience method for file_insert)
     def application_controller(data = nil, &block)
-      sentinel = "\nend" # expect a line beginning with 'end' to be last line in class definition
+      file_insert('app/controllers/application_controller.rb', {:before => "\nend"}, data, &block)
+    end
 
-      gsub_file 'app/controllers/application_controller.rb', /(#{Regexp.escape(sentinel)})/mi do |match|
-        "\n" << (block_given? ? block.call : data) << "\n" << match
+    # Insert data (or block) file before/after a specified text
+    # Defaults to before a line beginning with 'end' (expecting this to be last line in class/module definition)  
+    def file_insert(filename, where = {:before => "\nend"}, data = nil, &block)
+      #file_append!(filename, data, &block) if File(filename).exists?
+      if File.exists?(filename)
+        sentinel = where[:before] || where[:after]
+        gsub_file filename, /(#{Regexp.escape(sentinel)})/mi do |match|
+          "\n" << "#{match if where[:after]}" << (block_given? ? block.call : data) << "\n" << "#{match if where[:before]}"
+        end
       end
     end
+
+#    # Append data to end of a file.  File will be created if it didn't exist.
+#    def file_append!(filename, data = nil, &block)
+#      File.open(filename, "a") do |f|
+#        f << "\n" << (block_given? ? block.call : data) << "\n"
+#      end
+#    end
+
+#    # Add data to application layout
+#    # sections: head | body
+#    # location: top | bottom
+#    def layout(data, options = {})
+#      section = options.delete(:section) || 'head'
+#      location = options.delete(:location) || 'bottom'
+#      #
+#      # TODO
+#      #
+#    end
 
     # Is haml installed?
     def use_haml?
       File.exists?('vendor/plugins/haml')
     end
-    
+
+    # Are we using RSpec?
+    def use_rspec?
+      File.exists?('spec')
+    end
+
+    # Is sudo required for gem installation et.al.?
     def use_sudo?
       @use_sudo ||= ENV['USE_SUDO'] || ["y", "yes", ""].index(ask('use sudo? (defaults to yes)').downcase)
     end
@@ -103,13 +147,11 @@ module AppLego
   end
 end
 
-# Include into current template if not already there
-unless defined? use_sudo?
-  extend AppLego::Base
-  alias :gem_without_check :gem
-  alias :gem :gem_with_check
-  alias :plugin_without_braid :plugin
-  alias :plugin :plugin_with_braid
-  alias :plugin_without_check :plugin
-  alias :plugin :plugin_with_check
-end
+# Include into current template
+extend AppLego::Base
+alias :gem_without_check :gem
+alias :gem :gem_with_check
+alias :plugin_without_braid :plugin
+alias :plugin :plugin_with_braid
+alias :plugin_without_check :plugin
+alias :plugin :plugin_with_check
