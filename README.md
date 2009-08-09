@@ -4,7 +4,7 @@ These are modularized Rails application templates. The templates can be used on 
 
 ## Features
 
-* modular structure
+* modular structure, some simple dependencies between modules
 * uses git, every module makes a separate commit
 * guiding questions or options through the LEGOS environment variable
 
@@ -30,15 +30,15 @@ App LEGO can use [Braid](http://github.com/evilchelu/braid/wikis) to manage vend
 
 The **basic** module initializes the Rails application in a git repository, removes unnecessary files and directories, sets up `.gitignore` files and freezes Edge Rails.
 
-The **RSpec** module remove the `test` directory and installs the plugins necessary for RSpec. It also runs the rspec generator.
+The **rspec** module remove the `test` directory and installs the plugins necessary for RSpec. It also runs the rspec generator.
 
-The **Haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
+The **haml** module initializes the app for [Haml](http://haml.hamptoncatlin.com/) and [Compass](http://github.com/chriseppstein/compass/wikis). Sass files for Compass are installed in `app/stylesheets` and it uses the Blueprint css library. Other modules take care of generating haml template files if haml was installed.
 
-The **jQuery** module removes the default javascript files and installes jQuery, jQuery-UI and the jQuery Form plugin. The first two come with minified and full versions too.
+The **jquery** module removes the default javascript files and installes jQuery, jQuery-UI and the jQuery Form plugin. The first two come with minified and full versions too.
 
-The **Auth** module adds the AuthLogic gem and generates a UserSession model for it with an optional user model. The name of the user model and the user identifier can be given in the `USER_MODEL` and `USER_IDENT` environment variables.
+The **autlogic** module adds the AuthLogic gem and generates a UserSession model for it with an optional user model. The name of the user model and the user identifier can be given in the `USER_MODEL` and `USER_IDENT` environment variables.
 
-The **CouchDB** module installs the [CouchRest](http://github.com/jchris/couchrest/tree/master) gem and the [BasicModel](http://github.com/topfunky/basic_model/tree/master) plugin.
+The **couchdb** module installs the [CouchRest](http://github.com/jchris/couchrest/tree/master) gem and the [BasicModel](http://github.com/topfunky/basic_model/tree/master) plugin.
 
 The **locale** module will download localization files from Sven Fuchs' [rails-i18n](http://github.com/svenfuchs/rails-i18n/tree/master/rails/locale) repository. The generator will ask for the list of the localizations the user wants, but it can be given through the `LOCALES` environment variable too. The list is comma separated, and where no extension is given `.yml` is assumed. The first locale in the list will be used as the default locale. Example:
 
@@ -47,6 +47,21 @@ The **locale** module will download localization files from Sven Fuchs' [rails-i
 The locale module also checks for module specific localizations in `locales/` under the same path App LEGO was called from.
   
 The **misc** module inserts miscellaneous files into the application. These include a basic `application_controller.rb`, some helpers, a basic layout with flashes taken care of and some initializers.
+
+The **eclipse** module generates project file for Eclipse RDT.
+
+The **remarkable** module adds [Remarkable](https://github.com/carlosbrando/remarkable/tree) testing macroses to RSpec.
+
+The **shoulda** adds Shoulda testing capabilities.
+
+The **cucumber** module installs excellent [Cucumber](http://cukes.info/)/Webrat integration testing framework.
+
+The **clearance** module adds Clearance authentication engine.
+
+The **recaptcha** module installs [ReCaptcha](https://github.com/ambethia/recaptcha/tree) plugin.
+
+The **typus** module installs [Typus](https://github.com/fesplugas/typus/tree) admin panel.
+
 
 So far this is all. Feel free to fork the repository and send me pull requests if you find out something cool.
 
