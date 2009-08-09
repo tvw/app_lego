@@ -98,7 +98,7 @@ module AppLego
     def application_controller(data = nil, &block)
       file_insert('app/controllers/application_controller.rb', {:before => "\nend"}, data, &block)
     end
-
+  
     # Insert data (or block) file before/after a specified text
     # Defaults to before a line beginning with 'end' (expecting this to be last line in class/module definition)  
     def file_insert(filename, where = {:before => "\nend"}, data = nil, &block)
@@ -108,6 +108,19 @@ module AppLego
         gsub_file filename, /(#{Regexp.escape(sentinel)})/mi do |match|
           "\n" << "#{match if where[:after]}" << (block_given? ? block.call : data) << "\n" << "#{match if where[:before]}"
         end
+      else
+        log "! file #{filenode} isn't exists, cann't insert data"
+      end
+    end
+
+    # Append data to end of a file
+    def file_append(filename, data = nil, &block)
+      if File.exists?(filename)
+        File.open(filename, "a") do |f|
+          f << "\n" << (block_given? ? block.call : data) << "\n"
+        end
+      else
+        log "! file #{filenode} isn't exists, cann't append data"
       end
     end
 

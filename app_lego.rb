@@ -71,8 +71,9 @@ modules = [
   ["object_daddy", "Add object_daddy fixture generation?", :no_factory_girl, :no_machinist ],
 
   # Modules
-
+  
   ["hoptoad", "Use Hoptoad error notifier?"],
+  ["exception_notification", "Use Exception Notification plugin?", :no_hoptoad],
 
   # Javascripts
 
@@ -87,6 +88,8 @@ modules = [
   ["clearance", "Add Clearance authentication engine?", :no_authlogic ],
 
   # Others
+  
+  ["recaptcha", "Use Recaptcha?"],
 
   ["aasm", "Install aasm state machine?"],
   ["acts-as-taggeable-on", "Install acts-as-taggeable-on?"],
