@@ -78,4 +78,5 @@ else
 
 end
 
-
+git :add => "."
+git :commit => "-a -m 'Added basic layout'"
